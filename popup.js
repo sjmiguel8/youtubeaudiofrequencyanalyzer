@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Send message to content script to toggle the UI
                 chrome.tabs.sendMessage(activeTab.id, { action: "toggleUI" }, (response) => {
                     if (chrome.runtime.lastError) {
-                        statusDiv.textContent = "Error: " + (chrome.runtime.lastError.message || "Unknown error");
+                        statusDiv.textContent = "Error: " + chrome.runtime.lastError.message;
                         console.error(chrome.runtime.lastError);
                     } else if (response && response.status === "active") {
                         statusDiv.textContent = "Dissect Mode Active!";
@@ -36,7 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeTab = tabs[0];
         if (activeTab.url && activeTab.url.includes("youtube.com/watch")) {
             chrome.tabs.sendMessage(activeTab.id, { action: "getStatus" }, (response) => {
-                 if (response && response.status === "active") {
+                if (chrome.runtime.lastError) {
+                    // Content script might not be loaded yet
+                    statusDiv.textContent = "Dissect Mode Inactive.";
+                    toggleButton.textContent = "Activate Dissect Mode";
+                    toggleButton.style.backgroundColor = "#FF0000";
+                } else if (response && response.status === "active") {
                     statusDiv.textContent = "Dissect Mode Active!";
                     toggleButton.textContent = "Deactivate Dissect Mode";
                     toggleButton.style.backgroundColor = "#555";

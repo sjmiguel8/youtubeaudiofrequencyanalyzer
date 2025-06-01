@@ -10,6 +10,7 @@ let isDissectModeActive = false;
 let youtubeVideoElement = null;
 let panelUI = null;
 let animationFrameId;
+let loopInterval; // Move to global scope
 
 // --- UI Elements ---
 let canvas;
@@ -204,7 +205,6 @@ function createPanelUI() {
 
     // Loop functionality event listeners
     const loopToggleBtn = document.getElementById('loop-toggle-btn');
-    let loopInterval;
 
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -362,8 +362,10 @@ function toggleDissectMode(activate) {
             unSoloAllBands(); // Restore original mix
             // Consider disconnecting all nodes and setting to null to free resources
             // For simplicity in this example, we'll leave context alive but restore original mix.
-            clearInterval(loopInterval);
-            loopInterval = null;
+            if (loopInterval) {
+                clearInterval(loopInterval);
+                loopInterval = null;
+            }
             if(document.getElementById('loop-toggle-btn')) {
                 document.getElementById('loop-toggle-btn').textContent = "Set Loop & Play";
                 document.getElementById('loop-toggle-btn').style.backgroundColor = "#FF0000";

@@ -78,6 +78,7 @@
 .slider-group input[type="range"] {
     width: calc(100% - 60px); /* Adjust width to fit solo button */
     -webkit-appearance: none;
+    appearance: none;
     height: 6px;
     background: #555;
     outline: none;
