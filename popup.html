@@ -1,0 +1,50 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dissect-A-Song</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                width: 250px;
+                padding: 10px;
+                background-color: #282828; /* YouTube dark theme background */
+                color: #fff;
+            }
+            h2 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+            button {
+                background-color: #FF0000; /* YouTube red */
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+                width: 100%;
+            }
+            button:hover {
+                background-color: #CC0000;
+            }
+            #status {
+                margin-top: 10px;
+                font-size: 0.9em;
+                color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Dissect-A-Song</h2>
+        <button id="toggleDissect">Activate Dissect Mode</button>
+        <div id="status">Ready.</div>
+        <script src="popup.js"></script>
+    </body>
+    </html>
